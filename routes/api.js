@@ -16,6 +16,11 @@ router.put("/api/workouts/:id", (req,res) =>{
 });
 
 router.post("/api/workouts", (req,res) =>{
+    Workout.create(req.body).then((workout)=>{
+        res.json(workout);
+    }).catch((err) =>{
+        err.status(500).json(err);
+    })
 
 
 });
