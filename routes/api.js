@@ -27,7 +27,7 @@ router.put("/api/workouts/:id", (req, res) => {
 });
 
 router.post("/api/workouts", (req, res) => {
-  Workout.create()
+  Workout.create(req.body)
     .then((result) => {
       res.json(result);
     })
@@ -36,6 +36,15 @@ router.post("/api/workouts", (req, res) => {
     });
 });
 
-router.get("/api/workouts/range", (req, res) => {});
+router.get("/api/workouts/range", (req, res) => {
+  Workout.find()
+    .limit(7)
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;
